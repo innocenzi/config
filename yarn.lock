@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@use-preset/preset@^0.1.1-alpha.1":
-  version "0.1.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@use-preset/preset/-/preset-0.1.1-alpha.1.tgz#18ab3a397e22d127bfdc86fe62b7f3533bed49df"
-  integrity sha512-jv7DSAAOaxdd3+zRR/99Nx1p6rWTtUaf2biOneHJ2Q/6mJTHhCFcLeiis//TWe+FuuigwuPaHLlOzfp0iGrlNA==
+"@use-preset/preset@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@use-preset/preset/-/preset-1.1.0.tgz#19f8f83b75d7febb31be63fb85f894a864de1fd6"
+  integrity sha512-3RTyQmn17oBTHY+NJ/pLOE7jvIZbO2calh0bjq/OTCmGHBwFCMd419VyKvOMzUFtJ1VmhAaT8pD3bkwUXYInvQ==
   dependencies:
     typescript "^3.9.5"
 
