@@ -2,8 +2,5 @@
 	"name": "dotfiles",
 	"version": "0.1.0",
 	"license": "MIT",
-	"preset": "src/preset.js",
-	"devDependencies": {
-		"@use-preset/preset": "^1.1.0"
-	}
+	"preset": "preset.js"
 }
