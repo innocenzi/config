@@ -540,10 +540,10 @@ universalify@^1.0.0:
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-1.0.0.tgz#b61a1da173e8435b2fe3c67d29b9adf8594bd16d"
   integrity sha512-rb6X1W158d7pRQBg5gkR8uPaSfiids68LTJQYOtEUhoJUWBdaQHsuT/EUduxXYxcrt4r5PJ4fuHW1MHT6p0qug==
 
-use-preset@^0.0.1-alpha.13:
-  version "0.0.1-alpha.13"
-  resolved "https://registry.yarnpkg.com/use-preset/-/use-preset-0.0.1-alpha.13.tgz#ea17fdd56c847b1d0d83d06bd952515a62cac07a"
-  integrity sha512-n7ABb1NQKhhZAHhDfB3xCs4yidWH9N0ui+ds9ZLKSB8qZNzcA1rgVg/FVTWUCaGwyKle9/Cz/UHRC6eBFar3QA==
+use-preset@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/use-preset/-/use-preset-0.1.0.tgz#be84eb92f9fda4256ae646158e5e292c86c8d274"
+  integrity sha512-vXlv1R5pAEVFwVhJ/uBqtwkeyy3jZneHTPuoFkppjGLWROFzfrLxVjzv6zFqiIx7HRvov09WeMuUCv6czuI23g==
   dependencies:
     "@oclif/parser" "^3.8.5"
     "@poppinss/fancy-logs" "^1.3.7"

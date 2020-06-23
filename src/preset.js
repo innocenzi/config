@@ -1,10 +1,11 @@
 const { Preset } = require('use-preset');
 
 module.exports = Preset.make({
+	name: 'innocenzi/dotfiles',
 	actions: () => [
 		{
 			type: 'copy',
-			files: '*',
+			files: '**/*.dotfile',
 			strategy: 'ask',
 		},
 	],
