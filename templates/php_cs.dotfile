@@ -22,11 +22,10 @@ return PhpCsFixer\Config::create()
         'native_function_casing'                  => true,
         'native_function_type_declaration_casing' => true,
         'native_function_invocation'              => [
-            'include' => ['@all'],
-            'scope'   => 'all',
+            'strict' => true,
         ],
         'native_constant_invocation' => [
-            'scope' => 'all',
+            'strict' => true,
         ],
         'blank_line_before_statement' => [
             'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
