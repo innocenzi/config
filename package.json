@@ -1,9 +1,10 @@
 {
-	"name": "dotfiles",
-	"version": "0.1.0",
+	"name": "@innocenzi/config",
+	"version": "0.1",
+	"author": "Enzo Innocenzi",
 	"license": "MIT",
-	"preset": "src/preset.js",
-	"dependencies": {
-		"use-preset": "^0.1.0"
+	"preset": "preset.ts",
+	"devDependencies": {
+		"use-preset": "^0.2"
 	}
 }
