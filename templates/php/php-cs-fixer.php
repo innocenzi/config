@@ -36,7 +36,7 @@ return (new PhpCsFixer\Config())
         'method_chaining_indentation' => true,
         'class_attributes_separation' => [
             'elements' => [
-                'method' => 'one'
+                'method' => 'one',
             ],
         ],
         'method_argument_space' => [
@@ -47,5 +47,32 @@ return (new PhpCsFixer\Config())
         'no_alternative_syntax' => true,
         'native_function_casing' => true,
         'native_function_type_declaration_casing' => true,
+        'single_line_after_imports' => true,
+        'no_singleline_whitespace_before_semicolons' => true,
+        'trim_array_spaces' => true,
+        'whitespace_after_comma_in_array' => true,
+        'no_extra_blank_lines' => [
+            'tokens' => [
+                'case',
+                'continue',
+                'curly_brace_block',
+                'default',
+                'extra',
+                'parenthesis_brace_block',
+                'square_brace_block',
+                'switch',
+                'throw',
+                'use',
+                'use_trait',
+            ],
+        ],
+        'native_constant_invocation' => [
+            'include' => ['@compiler_optimized'],
+            'strict' => true,
+        ],
+        'native_function_invocation' => [
+            'scope' => 'namespaced',
+            'strict' => true,
+        ],
     ])
     ->setFinder($finder);
