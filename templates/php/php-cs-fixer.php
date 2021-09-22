@@ -34,6 +34,7 @@ return (new PhpCsFixer\Config())
         'phpdoc_single_line_var_spacing' => true,
         'phpdoc_var_without_name' => true,
         'method_chaining_indentation' => true,
+        'array_indentation' => true,
         'class_attributes_separation' => [
             'elements' => [
                 'method' => 'one',
