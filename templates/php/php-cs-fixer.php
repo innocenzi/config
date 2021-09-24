@@ -52,6 +52,7 @@ return (new PhpCsFixer\Config())
         'no_singleline_whitespace_before_semicolons' => true,
         'trim_array_spaces' => true,
         'whitespace_after_comma_in_array' => true,
+        'single_blank_line_before_namespace' => true,
         'no_extra_blank_lines' => [
             'tokens' => [
                 'case',
