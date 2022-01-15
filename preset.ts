@@ -2,7 +2,7 @@ import { definePreset, extractTemplates, installPackages } from '@preset/core'
 
 export default definePreset({
 	name: 'innocenzi:config',
-	flags: {
+	options: {
 		install: true,
 		editor: true,
 		eslint: true,
