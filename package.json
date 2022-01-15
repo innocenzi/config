@@ -1,10 +1,9 @@
 {
-	"name": "@innocenzi/config",
-	"version": "0.1",
+	"private": true,
 	"author": "Enzo Innocenzi",
 	"license": "MIT",
 	"preset": "preset.ts",
 	"devDependencies": {
-		"use-preset": "^0.2"
+		"@preset/core": "^0.0.2"
 	}
 }
