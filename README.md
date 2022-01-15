@@ -1,7 +1,7 @@
 <p align="center">
   <br />
   <a href="https://preset.dev">
-    <img width="100" src="https://raw.githubusercontent.com/use-preset/cli/master/.github/assets/logo.svg" alt="Logo of the Preset tool">
+    <img width="100" src="https://raw.githubusercontent.com/preset/preset/main/.github/assets/logo.svg" alt="Logo of the Preset tool">
   </a>
   <br />
 </p>
@@ -15,7 +15,7 @@
 <div align="center">
   This preset adds my common configuration files in the current project.
   <br />
-  <a href="https://usepreset.dev">Learn more</a>
+  <a href="https://preset.dev">Learn more</a>
 </div>
 
 <p align="center">
