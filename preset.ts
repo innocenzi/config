@@ -18,7 +18,7 @@ export default definePreset({
 
 		if (options.install) {
 			if (options.eslint) {
-				await installPackages({ for: 'node', install: ['eslint', '@innocenzi/eslint-config'], dev: true, title: 'install eslint' })
+				await installPackages({ for: 'node', install: ['eslint', '@innocenzi/eslint-config', 'typescript'], dev: true, title: 'install eslint' })
 			}
 			
 			if (options.php) {
