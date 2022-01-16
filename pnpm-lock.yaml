@@ -1,10 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@preset/core': ^0.0.3
+  '@preset/core': ^0.0.6
 
 devDependencies:
-  '@preset/core': 0.0.3
+  '@preset/core': 0.0.6
 
 packages:
 
@@ -41,11 +41,12 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@preset/core/0.0.3:
-    resolution: {integrity: sha512-X4tjdHFcHuMmeBKn/u1ZK3vEB8R4jrbWEVXFBkO8eDbMr3bWYcJ8EQdWp4UGMEEsneLE5k3/W79oDcGBhYz9RQ==}
+  /@preset/core/0.0.6:
+    resolution: {integrity: sha512-PmZw3HuNibxH7S8K/h1UDtLbwnlDhN64yod07Y1z9yBTI7FbwluwDFpVxq2fDabv/H1cmTgMiurgw8LrLGHvRg==}
     dependencies:
       cac: 6.7.12
       debug: 4.3.3
+      deepmerge: 4.2.2
       detect-indent: 7.0.0
       esbuild: 0.14.11
       execa: 6.0.0
@@ -53,6 +54,7 @@ packages:
       fs-extra: 10.0.0
       mitt: 3.0.0
       simple-git: 2.48.0
+      unset-value: 2.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -88,6 +90,11 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
+
+  /deepmerge/4.2.2:
+    resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /detect-indent/7.0.0:
@@ -317,6 +324,13 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /get-value/3.0.1:
+    resolution: {integrity: sha512-mKZj9JLQrwMBtj5wxi6MH8Z5eSKaERpAwjg43dPtlGI1ZVEgH/qC7T8/6R2OBSUA+zzHBZgICsVJaEIV2tKTDA==}
+    engines: {node: '>=6.0'}
+    dependencies:
+      isobject: 3.0.1
+    dev: true
+
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -326,6 +340,21 @@ packages:
 
   /graceful-fs/4.2.9:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
+    dev: true
+
+  /has-value/2.0.2:
+    resolution: {integrity: sha512-ybKOlcRsK2MqrM3Hmz/lQxXHZ6ejzSPzpNabKB45jb5qDgJvKPa3SdapTsTLwEb9WltgWpOmNax7i+DzNOk4TA==}
+    engines: {node: '>=6'}
+    dependencies:
+      get-value: 3.0.1
+      has-values: 2.0.1
+    dev: true
+
+  /has-values/2.0.1:
+    resolution: {integrity: sha512-+QdH3jOmq9P8GfdjFg0eJudqx1FqU62NQJ4P16rOEHeRdl7ckgwn6uqQjzYE0ZoHVV/e5E2esuJ5Gl5+HUW19w==}
+    engines: {node: '>=6'}
+    dependencies:
+      kind-of: 6.0.3
     dev: true
 
   /human-signals/3.0.1:
@@ -359,12 +388,27 @@ packages:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
     dev: true
 
+  /isobject/3.0.1:
+    resolution: {integrity: sha1-TkMekrEalzFjaqH5yNHMvP2reN8=}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /isobject/4.0.0:
+    resolution: {integrity: sha512-S/2fF5wH8SJA/kmwr6HYhK/RI/OkhD84k8ntalo0iJjZikgq1XFvR5M8NPT1x5F7fBwCG3qHfnzeP/Vh/ZxCUA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /jsonfile/6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
       graceful-fs: 4.2.9
+    dev: true
+
+  /kind-of/6.0.3:
+    resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /merge-stream/2.0.0:
@@ -482,6 +526,14 @@ packages:
   /universalify/2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
+    dev: true
+
+  /unset-value/2.0.0:
+    resolution: {integrity: sha512-hhaWKXRLy35kYyMpl4FkmSfHGh5PLSE9QqE3jxqDBxhHiIm2+sZkisg69/IL6MIkTcMZ8mCR1PgOIZRuWlvhZg==}
+    engines: {node: '>=10'}
+    dependencies:
+      has-value: 2.0.2
+      isobject: 4.0.0
     dev: true
 
   /which/2.0.2:
