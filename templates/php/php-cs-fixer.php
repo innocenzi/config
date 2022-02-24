@@ -24,7 +24,9 @@ return (new PhpCsFixer\Config())
         'explicit_string_variable' => true,
         'single_line_throw' => false,
         'not_operator_with_successor_space' => false,
-        'trailing_comma_in_multiline' => true,
+        'trailing_comma_in_multiline' => [
+            'elements' => ['arrays', 'arguments', 'parameters'],
+        ],
         'phpdoc_scalar' => true,
         'unary_operator_spaces' => true,
         'binary_operator_spaces' => true,
