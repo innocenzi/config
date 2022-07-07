@@ -1,5 +1,3 @@
-import { definePreset, extractTemplates, installPackages } from '@preset/core'
-
 export default definePreset({
 	name: 'innocenzi:config',
 	options: {
@@ -22,7 +20,35 @@ export default definePreset({
 			}
 			
 			if (options.php) {
-				await installPackages({ for: 'php', install: ['friendsofphp/php-cs-fixer'], dev: true, title: 'install php-cs-fixer' })
+				await group({
+					title: 'install php-cs-fixer',
+					handler: async () => {
+						await installPackages({ for: 'php', install: ['friendsofphp/php-cs-fixer'], dev: true })
+						await editFiles({
+							title: 'ignore php-cs-fixer cache file',
+							files: '.gitignore',
+							operations: {
+								type: 'add-line',
+								position: 'append',
+								lines: ['.php-cs-fixer.cache']
+							}
+						})
+						await editFiles({
+							title: 'add "style" composer script',
+							files: 'composer.json',
+							operations: {
+								type: 'edit-json',
+								merge: {
+									scripts: {
+										style: [
+												"php-cs-fixer fix --allow-risky=yes"
+										],
+									}
+								}
+							}
+						})
+					}
+				})
 			}
 		}
 	}
