@@ -4,6 +4,7 @@
   "license": "MIT",
   "preset": "preset.ts",
   "devDependencies": {
-    "@preset/core": "^0.5.0"
+    "@preset/core": "^0.6.0",
+    "@types/node": "^18.0.3"
   }
 }
