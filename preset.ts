@@ -5,13 +5,23 @@ export default definePreset({
 		editor: false,
 		eslint: false,
 		vue: false,
-		php: false
+		php: false,
+		ghRelease: false
 	},
 	handler: async ({ options }) => {
 		for (const type of ['editor', 'eslint', 'php', 'vue']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} config` })
 			}
+		}
+
+		if (options.ghRelease) {
+			await extractTemplates({
+				title: 'extract release action',
+				from: 'github/release.yml',
+				to: '.github/workflows',
+				flatten: true
+			})
 		}
 
 		if (options.install) {
