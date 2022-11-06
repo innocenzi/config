@@ -6,9 +6,9 @@ export default definePreset({
 		eslint: false,
 		vue: false,
 		php: false,
-		ghRelease: false
+		ghRelease: false,
 	},
-	handler: async ({ options }) => {
+	handler: async({ options }) => {
 		for (const type of ['editor', 'eslint', 'php', 'vue']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} config` })
@@ -20,7 +20,7 @@ export default definePreset({
 				title: 'extract release action',
 				from: 'github/release.yml',
 				to: '.github/workflows',
-				flatten: true
+				flatten: true,
 			})
 		}
 
@@ -28,11 +28,11 @@ export default definePreset({
 			if (options.eslint) {
 				await installPackages({ for: 'node', install: ['eslint', '@innocenzi/eslint-config', 'typescript'], dev: true, title: 'install eslint' })
 			}
-			
+
 			if (options.php) {
 				await group({
 					title: 'install php-cs-fixer',
-					handler: async () => {
+					handler: async() => {
 						await installPackages({ for: 'php', install: ['friendsofphp/php-cs-fixer'], dev: true })
 						await editFiles({
 							title: 'ignore php-cs-fixer cache file',
@@ -40,8 +40,8 @@ export default definePreset({
 							operations: {
 								type: 'add-line',
 								position: 'append',
-								lines: ['.php-cs-fixer.cache']
-							}
+								lines: ['.php-cs-fixer.cache'],
+							},
 						})
 						await editFiles({
 							title: 'add "style" composer script',
@@ -51,15 +51,15 @@ export default definePreset({
 								merge: {
 									scripts: {
 										style: [
-												"php-cs-fixer fix --allow-risky=yes"
+											'php-cs-fixer fix --allow-risky=yes',
 										],
-									}
-								}
-							}
+									},
+								},
+							},
 						})
-					}
+					},
 				})
 			}
 		}
-	}
+	},
 })
