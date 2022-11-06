@@ -2,7 +2,7 @@ export default definePreset({
 	name: 'innocenzi:config',
 	options: {
 		install: true,
-		editor: false,
+		editor: true,
 		eslint: false,
 		vue: false,
 		php: false,
