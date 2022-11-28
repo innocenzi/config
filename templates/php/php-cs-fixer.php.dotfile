@@ -20,6 +20,7 @@ return (new PhpCsFixer\Config())
         '@PSR12' => true,
         '@PhpCsFixer:risky' => true,
         'comment_to_phpdoc' => false,
+        'braces' => true,
         'is_null' => false,
         'ternary_operator_spaces' => true,
         'array_syntax' => ['syntax' => 'short'],
