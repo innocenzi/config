@@ -38,6 +38,7 @@ export default definePreset({
 							title: 'ignore php-cs-fixer cache file',
 							files: '.gitignore',
 							operations: {
+								skipIf: (content) => content.includes('.php-cs-fixer.cache'),
 								type: 'add-line',
 								position: 'append',
 								lines: ['.php-cs-fixer.cache'],
