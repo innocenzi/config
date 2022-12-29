@@ -7,6 +7,7 @@ export default definePreset({
 		vue: false,
 		php: false,
 		rust: false,
+		bevy: false,
 		ghRelease: false,
 	},
 	handler: async({ options }) => {
@@ -14,6 +15,32 @@ export default definePreset({
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} config` })
 			}
+		}
+
+		if (options.bevy) {
+			await editFiles({
+				files: 'Cargo.toml',
+				operations: [
+					{
+						type: 'update-content',
+						skipIf: (content) => content.includes('bevy ='),
+						update: (content) => content.replace('[dependencies]', '[dependencies]\nbevy = { version = "0.9.0", features = ["dynamic"] }'),
+					},
+					{
+						type: 'update-content',
+						skipIf: (content) => content.includes('profile.dev'),
+						update: (content) => content += `
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+`.trimEnd(),
+					},
+				],
+			})
 		}
 
 		if (options.ghRelease) {
