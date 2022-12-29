@@ -6,10 +6,11 @@ export default definePreset({
 		eslint: false,
 		vue: false,
 		php: false,
+		rust: false,
 		ghRelease: false,
 	},
 	handler: async({ options }) => {
-		for (const type of ['editor', 'eslint', 'php', 'vue']) {
+		for (const type of ['editor', 'eslint', 'php', 'vue', 'rust']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} config` })
 			}
