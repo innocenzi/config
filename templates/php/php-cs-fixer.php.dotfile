@@ -17,6 +17,7 @@ return (new PhpCsFixer\Config())
         '@PSR12' => true,
         '@PHP82Migration' => true,
         '@PhpCsFixer:risky' => true,
+        'multiline_whitespace_before_semicolons' => ['strategy' => 'new_line_for_chained_calls'],
         'comment_to_phpdoc' => false,
         'is_null' => false,
         'types_spaces' => true,
