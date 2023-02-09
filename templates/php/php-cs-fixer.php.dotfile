@@ -2,13 +2,10 @@
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->in([
-        __DIR__ . '/config',
-        __DIR__ . '/app',
-        // __DIR__ . '/src',
-        __DIR__ . '/database',
-        __DIR__ . '/lang',
-        __DIR__ . '/routes',
+        __DIR__ . '/build',
         __DIR__ . '/tests',
+        __DIR__ . '/packages/laravel/src',
+        __DIR__ . '/packages/laravel/config',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
@@ -18,14 +15,15 @@ $finder = Symfony\Component\Finder\Finder::create()
 return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR12' => true,
-        '@Symfony' => true,
+        '@PHP82Migration' => true,
         '@PhpCsFixer:risky' => true,
         'comment_to_phpdoc' => false,
-        'braces' => true,
         'is_null' => false,
+        'types_spaces' => true,
         'ternary_operator_spaces' => true,
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => ['sort_algorithm' => 'alpha'],
+        'ordered_class_elements' => ['sort_algorithm' => 'alpha'],
         'no_trailing_whitespace_in_string' => false,
         'no_unused_imports' => true,
         'no_useless_else' => true,
@@ -43,7 +41,7 @@ return (new PhpCsFixer\Config())
         'binary_operator_spaces' => true,
         'logical_operators' => true,
         'blank_line_before_statement' => [
-            'statements' => ['break', 'continue', 'declare', 'throw', 'try'],
+            'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
         ],
         'phpdoc_single_line_var_spacing' => true,
         'phpdoc_var_without_name' => true,
@@ -69,6 +67,7 @@ return (new PhpCsFixer\Config())
         'single_blank_line_before_namespace' => true,
         'no_extra_blank_lines' => [
             'tokens' => [
+                'case',
                 'continue',
                 'curly_brace_block',
                 'default',
@@ -76,6 +75,7 @@ return (new PhpCsFixer\Config())
                 'parenthesis_brace_block',
                 'square_brace_block',
                 'switch',
+                'throw',
                 'use',
                 'use_trait',
             ],
