@@ -2,10 +2,10 @@
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->in([
-        __DIR__ . '/build',
+        __DIR__ . '/config',
+        __DIR__ . '/app',
+        // __DIR__ . '/src',
         __DIR__ . '/tests',
-        __DIR__ . '/packages/laravel/src',
-        __DIR__ . '/packages/laravel/config',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
