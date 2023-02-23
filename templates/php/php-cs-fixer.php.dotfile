@@ -13,10 +13,13 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->ignoreVCS(true);
 
 return (new PhpCsFixer\Config())
+    ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
         '@PHP82Migration' => true,
         '@PhpCsFixer:risky' => true,
+        'declare_strict_types' => true,
+        'single_quote' => true,
         'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
         'comment_to_phpdoc' => false,
         'is_null' => false,
@@ -51,6 +54,7 @@ return (new PhpCsFixer\Config())
         'class_attributes_separation' => [
             'elements' => [
                 'method' => 'one',
+                'trait_import' => 'none',
             ],
         ],
         'method_argument_space' => [
@@ -81,7 +85,6 @@ return (new PhpCsFixer\Config())
                 'switch',
                 'throw',
                 'use',
-                'use_trait',
             ],
         ],
         'native_constant_invocation' => [
