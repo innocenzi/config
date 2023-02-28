@@ -18,6 +18,7 @@ return (new PhpCsFixer\Config())
         '@PSR12' => true,
         '@PHP82Migration' => true,
         '@PhpCsFixer:risky' => true,
+        'heredoc_indentation' => ['indentation' => 'same_as_start'],
         'declare_strict_types' => true,
         'single_quote' => true,
         'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
