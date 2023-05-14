@@ -17,6 +17,18 @@ export default definePreset({
 			}
 		}
 
+		if (options.php) {
+			await editFiles({
+				files: 'phpunit.xml',
+				operations: {
+					type: 'update-content',
+					update: (content) => content
+						.replace('<!-- <env name="DB_CONNECTION" value="sqlite"/> -->', '<env name="DB_CONNECTION" value="mysql"/>')
+						.replace('<!-- <env name="DB_DATABASE" value=":memory:"/> -->', '<env name="DB_DATABASE" value="testing"/>'),
+				},
+			})
+		}
+
 		if (options.bevy) {
 			await editFiles({
 				files: 'Cargo.toml',
