@@ -71,7 +71,7 @@ return (new PhpCsFixer\Config())
         'no_singleline_whitespace_before_semicolons' => true,
         'trim_array_spaces' => true,
         'whitespace_after_comma_in_array' => true,
-        'single_blank_line_before_namespace' => true,
+        'blank_lines_before_namespace' => true,
         'curly_braces_position' => [
             'anonymous_classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
         ],
