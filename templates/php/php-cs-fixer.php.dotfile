@@ -20,7 +20,7 @@ return (new PhpCsFixer\Config())
         '@PHP82Migration' => true,
         '@PhpCsFixer:risky' => true,
         'heredoc_indentation' => ['indentation' => 'same_as_start'],
-        'declare_strict_types' => true,
+        'declare_strict_types' => false,
         'single_quote' => true,
         'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
         'comment_to_phpdoc' => false,
