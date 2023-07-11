@@ -19,7 +19,7 @@ return (new PhpCsFixer\Config())
         '@PSR12' => true,
         '@PHP82Migration' => true,
         '@PhpCsFixer:risky' => true,
-				'single_space_around_construct' => true,
+        'single_space_around_construct' => true,
         'heredoc_indentation' => ['indentation' => 'same_as_start'],
         'declare_strict_types' => false,
         'single_quote' => true,
