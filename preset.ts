@@ -77,12 +77,20 @@ opt-level = 3
 						await editFiles({
 							title: 'ignore php-cs-fixer cache file',
 							files: '.gitignore',
-							operations: {
-								skipIf: (content) => content.includes('.php-cs-fixer.cache'),
-								type: 'add-line',
-								position: 'append',
-								lines: ['.php-cs-fixer.cache'],
-							},
+							operations: [
+								{
+									skipIf: (content) => content.includes('.php-cs-fixer.cache'),
+									type: 'add-line',
+									position: 'append',
+									lines: ['.php-cs-fixer.cache'],
+								},
+								{
+									skipIf: (content) => content.includes('_ide_helper*'),
+									type: 'add-line',
+									position: 'append',
+									lines: ['_ide_helper*', '.phpstorm.meta.php'],
+								},
+							],
 						})
 						await editFiles({
 							title: 'add "style" composer script',
