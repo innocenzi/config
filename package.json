@@ -4,10 +4,10 @@
   "author": "Enzo Innocenzi",
   "preset": "preset.ts",
   "devDependencies": {
-    "@innocenzi/eslint-config": "^0.20.0",
-    "@preset/core": "^0.11.0",
-    "@types/node": "^18.16.19",
+    "@innocenzi/eslint-config": "^0.21.2",
+    "@preset/core": "^0.11.3",
+    "@types/node": "^20.12.7",
     "eslint": "^8.44.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.4.5"
   }
 }

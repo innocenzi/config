@@ -2,19 +2,54 @@ export default definePreset({
 	name: 'innocenzi:config',
 	options: {
 		install: true,
-		editor: true,
+		editor: false,
 		eslint: false,
 		vue: false,
 		php: false,
 		rust: false,
 		bevy: false,
 		ghRelease: false,
+		tasks: false,
 	},
 	handler: async({ options }) => {
 		for (const type of ['editor', 'eslint', 'php', 'vue', 'rust']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} config` })
 			}
+		}
+
+		if (options.tasks) {
+			await extractTemplates({
+				title: 'extract tasks file',
+				from: 'vscode/tasks.json',
+				to: '.vscode',
+				flatten: true,
+				whenConflict: 'skip',
+			})
+
+			await editFiles({
+				title: 'add Vite task',
+				files: '.vscode/tasks.json',
+				operations: {
+					type: 'edit-json',
+					merge: {
+						tasks: [
+							{
+								label: 'Run Vite',
+								type: 'shell',
+								command: 'npm run dev',
+								presentation: {
+									reveal: 'always',
+									panel: 'new',
+								},
+								runOptions: {
+									runOn: 'folderOpen',
+								},
+							},
+						],
+					},
+				},
+			})
 		}
 
 		if (options.php) {
