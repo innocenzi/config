@@ -1,7 +1,0 @@
-node_modules
-public
-storage
-resources/i18n/*.json
-tests
-vendor
-**/dist
