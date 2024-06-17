@@ -1,13 +1,13 @@
 {
   "private": true,
-  "license": "MIT",
   "author": "Enzo Innocenzi",
+  "license": "MIT",
   "preset": "preset.ts",
   "devDependencies": {
-    "@innocenzi/eslint-config": "^0.21.2",
+    "@innocenzi/eslint-config": "^0.22.2",
     "@preset/core": "^0.11.3",
-    "@types/node": "^20.12.7",
-    "eslint": "^8.44.0",
+    "@types/node": "^20.14.2",
+    "eslint": "^9.5.0",
     "typescript": "^5.4.5"
   }
 }
