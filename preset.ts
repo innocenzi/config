@@ -174,7 +174,7 @@ opt-level = 3
 									'@php artisan ide-helper:eloquent || true',
 									'@php artisan ide-helper:generate || true',
 									'@php artisan ide-helper:meta || true',
-									'@php artisan ide-helper:models -M || true',
+									'@php artisan ide-helper:models -M --dir=\\"src\\" || true',
 								],
 							},
 						},
