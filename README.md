@@ -8,7 +8,7 @@
 
 <h2 align="center">Configuration files</h2>
 <p align="center">
-  <pre><div align="center">npx @preset/cli innocenzi/config [--php] [--eslint]</div></pre>
+  <pre><div align="center">npx @preset/cli innocenzi/config [--laravel] [--eslint]</div></pre>
 </p>
 <br />
 
