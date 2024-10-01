@@ -12,7 +12,7 @@ export default definePreset({
 		laravel: false,
 	},
 	handler: async ({ options, prompts }) => {
-		for (const type of ['editor', 'eslint', 'vue', 'rust']) {
+		for (const type of ['editor', 'eslint', 'rust']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} files` })
 			}
