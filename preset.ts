@@ -10,9 +10,10 @@ export default definePreset({
 		ghRelease: false,
 		tasks: false,
 		laravel: false,
+		php: false,
 	},
 	handler: async ({ options, prompts }) => {
-		for (const type of ['editor', 'eslint', 'rust']) {
+		for (const type of ['editor', 'eslint', 'rust', 'php']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} files` })
 			}
@@ -119,25 +120,6 @@ opt-level = 3
 			})
 
 			await editFiles({
-				title: 'ignore php-cs-fixer cache file',
-				files: '.gitignore',
-				operations: [
-					{
-						skipIf: (content) => content.includes('.php-cs-fixer.cache'),
-						type: 'add-line',
-						position: 'append',
-						lines: ['.php-cs-fixer.cache'],
-					},
-					{
-						skipIf: (content) => content.includes('_ide_helper*'),
-						type: 'add-line',
-						position: 'append',
-						lines: ['_ide_helper*', '.phpstorm.meta.php'],
-					},
-				],
-			})
-
-			await editFiles({
 				title: 'update composer.json scripts',
 				files: 'composer.json',
 				operations: [
@@ -205,6 +187,27 @@ opt-level = 3
 			})
 		}
 
+		if (options.php) {
+			await editFiles({
+				title: 'ignore php-cs-fixer cache file',
+				files: '.gitignore',
+				operations: [
+					{
+						skipIf: (content) => content.includes('.php-cs-fixer.cache'),
+						type: 'add-line',
+						position: 'append',
+						lines: ['.php-cs-fixer.cache'],
+					},
+					{
+						skipIf: (content) => content.includes('_ide_helper*'),
+						type: 'add-line',
+						position: 'append',
+						lines: ['_ide_helper*', '.phpstorm.meta.php'],
+					},
+				],
+			})
+		}
+
 		if (options.install) {
 			if (options.eslint) {
 				await installPackages({ for: 'node', install: ['eslint', '@innocenzi/eslint-config', 'typescript'], dev: true, title: 'install eslint' })
@@ -217,6 +220,10 @@ opt-level = 3
 					command: 'php',
 					arguments: ['artisan', 'key:generate'],
 				})
+			}
+
+			if (options.php && !options.laravel) {
+				await installPackages({ for: 'php', install: ['barryvdh/laravel-ide-helper'], dev: true })
 			}
 		}
 	},
