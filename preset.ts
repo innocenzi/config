@@ -143,8 +143,6 @@ opt-level = 3
 							},
 							scripts: {
 								'test': 'pest',
-								'lint': 'php-cs-fixer fix --allow-risky=yes --dry-run',
-								'lint:fix': 'php-cs-fixer fix --allow-risky=yes',
 								'post-update-cmd': '@php artisan vendor:publish --tag=laravel-assets --ansi --force',
 								'post-root-package-install': "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
 								'post-autoload-dump': [
@@ -185,19 +183,11 @@ opt-level = 3
 					},
 				},
 			})
-		}
 
-		if (options.php) {
 			await editFiles({
-				title: 'ignore php-cs-fixer cache file',
+				title: 'ignore ide helper files',
 				files: '.gitignore',
 				operations: [
-					{
-						skipIf: (content) => content.includes('.php-cs-fixer.cache'),
-						type: 'add-line',
-						position: 'append',
-						lines: ['.php-cs-fixer.cache'],
-					},
 					{
 						skipIf: (content) => content.includes('_ide_helper*'),
 						type: 'add-line',
@@ -208,22 +198,60 @@ opt-level = 3
 			})
 		}
 
+		if (options.php) {
+			await editFiles({
+				title: 'update composer.json scripts',
+				files: 'composer.json',
+				operations: [
+					{
+						type: 'edit-json',
+						merge: {
+							scripts: {
+								fmt: 'mago fmt',
+								lint: 'mago lint --fix && mago lint',
+								qa: [
+									'composer fmt',
+									'composer lint',
+									'composer test',
+								],
+							},
+						},
+					},
+				],
+			})
+		}
+
 		if (options.install) {
+			const phpPackages: string[] = []
+
 			if (options.eslint) {
 				await installPackages({ for: 'node', install: ['eslint', '@innocenzi/eslint-config', 'typescript'], dev: true, title: 'install eslint' })
 			}
 
-			if (options.laravel) {
-				await installPackages({ for: 'php', install: ['friendsofphp/php-cs-fixer', 'barryvdh/laravel-ide-helper'], dev: true })
+			if (options.php) {
 				await executeCommand({
-					title: 'generate artisan key',
-					command: 'php',
-					arguments: ['artisan', 'key:generate'],
+					title: 'add mago plugin',
+					command: 'composer',
+					arguments: ['config', 'allow-plugins.carthage-software/mago', 'true'],
 				})
+
+				phpPackages.push('carthage-software/mago')
 			}
 
-			if (options.php && !options.laravel) {
-				await installPackages({ for: 'php', install: ['barryvdh/laravel-ide-helper'], dev: true })
+			if (options.laravel) {
+				phpPackages.push('barryvdh/laravel-ide-helper')
+			}
+
+			if (phpPackages.length) {
+				await installPackages({ for: 'php', install: phpPackages, dev: true })
+
+				if (options.laravel) {
+					await executeCommand({
+						title: 'generate artisan key',
+						command: 'php',
+						arguments: ['artisan', 'key:generate'],
+					})
+				}
 			}
 		}
 	},
