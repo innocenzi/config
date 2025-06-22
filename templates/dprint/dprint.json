@@ -1,9 +1,5 @@
 {
 	"useTabs": true,
-	"php": {
-		"useTabs": false,
-		"indentWidth": 4
-	},
 	"typescript": {
 		"semiColons": "asi",
 		"quoteStyle": "preferSingle"
