@@ -4,6 +4,7 @@ export default definePreset({
 		install: true,
 		editor: false,
 		eslint: false,
+		dprint: true,
 		vue: false,
 		rust: false,
 		bevy: false,
@@ -13,7 +14,7 @@ export default definePreset({
 		php: false,
 	},
 	handler: async ({ options, prompts }) => {
-		for (const type of ['editor', 'eslint', 'rust', 'php']) {
+		for (const type of ['editor', 'eslint', 'rust', 'php', 'dprint']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} files` })
 			}
