@@ -2,19 +2,15 @@ export default definePreset({
 	name: 'innocenzi:config',
 	options: {
 		install: true,
-		editor: false,
-		eslint: false,
 		dprint: true,
-		vue: false,
 		rust: false,
-		bevy: false,
 		ghRelease: false,
 		tasks: false,
 		laravel: false,
 		php: false,
 	},
 	handler: async ({ options, prompts }) => {
-		for (const type of ['editor', 'eslint', 'rust', 'php', 'dprint']) {
+		for (const type of ['rust', 'php', 'dprint']) {
 			if (options[type]) {
 				await extractTemplates({ from: type, title: `extract ${type} files` })
 			}
@@ -54,41 +50,6 @@ export default definePreset({
 			})
 		}
 
-		if (options.bevy) {
-			await editFiles({
-				files: 'Cargo.toml',
-				operations: [
-					{
-						type: 'update-content',
-						skipIf: (content) => content.includes('bevy ='),
-						update: (content) => content.replace('[dependencies]', '[dependencies]\nbevy = { version = "0.9.0", features = ["dynamic"] }'),
-					},
-					{
-						type: 'update-content',
-						skipIf: (content) => content.includes('profile.dev'),
-						update: (content) => content += `
-# Enable a small amount of optimization in debug mode
-[profile.dev]
-opt-level = 1
-
-# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
-[profile.dev.package."*"]
-opt-level = 3
-`.trimEnd(),
-					},
-				],
-			})
-		}
-
-		if (options.ghRelease) {
-			await extractTemplates({
-				title: 'extract release action',
-				from: 'github/release.yml',
-				to: '.github/workflows',
-				flatten: true,
-			})
-		}
-
 		if (options.laravel) {
 			await applyNestedPreset({
 				title: 'install hybridly',
@@ -97,7 +58,6 @@ opt-level = 3
 
 			await extractTemplates({ from: 'laravel', title: 'extract laravel files', whenConflict: 'override' })
 
-			// eslint-disable-next-line no-alert
 			await prompt({
 				text: 'What is the application name?',
 				name: 'appname',
@@ -106,7 +66,15 @@ opt-level = 3
 
 			await deletePaths({
 				title: 'remove unused files and directories',
-				paths: ['app', 'database/factories', 'routes', 'package.lock', 'teests/Feature', 'tests/Unit', 'tests/TestCase.php'],
+				paths: [
+					'app',
+					'database/factories',
+					'routes',
+					'package.lock',
+					'teests/Feature',
+					'tests/Unit',
+					'tests/TestCase.php',
+				],
 			})
 
 			await editFiles({
@@ -114,9 +82,16 @@ opt-level = 3
 				files: 'phpunit.xml',
 				operations: {
 					type: 'update-content',
-					update: (content) => content
-						.replace('<!-- <env name="DB_CONNECTION" value="sqlite"/> -->', '<env name="DB_CONNECTION" value="pgsql"/>')
-						.replace('<!-- <env name="DB_DATABASE" value=":memory:"/> -->', '<env name="DB_DATABASE" value="testing"/>'),
+					update: (content) =>
+						content
+							.replace(
+								'<!-- <env name="DB_CONNECTION" value="sqlite"/> -->',
+								'<env name="DB_CONNECTION" value="pgsql"/>',
+							)
+							.replace(
+								'<!-- <env name="DB_DATABASE" value=":memory:"/> -->',
+								'<env name="DB_DATABASE" value="testing"/>',
+							),
 				},
 			})
 
@@ -143,7 +118,7 @@ opt-level = 3
 								],
 							},
 							scripts: {
-								'test': 'pest',
+								'test': '@php artisan test --ci --order-by random',
 								'post-update-cmd': '@php artisan vendor:publish --tag=laravel-assets --ansi --force',
 								'post-root-package-install': "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
 								'post-autoload-dump': [
@@ -156,6 +131,13 @@ opt-level = 3
 									'@php artisan ide-helper:generate || true',
 									'@php artisan ide-helper:meta || true',
 									'@php artisan ide-helper:models -M --dir=\\"src\\" || true',
+								],
+								fmt: 'mago fmt',
+								lint: 'mago lint --fix && mago lint',
+								qa: [
+									'composer fmt',
+									'composer lint',
+									'composer test',
 								],
 							},
 						},
@@ -199,34 +181,15 @@ opt-level = 3
 			})
 		}
 
-		if (options.php) {
-			await editFiles({
-				title: 'update composer.json scripts',
-				files: 'composer.json',
-				operations: [
-					{
-						type: 'edit-json',
-						merge: {
-							scripts: {
-								fmt: 'mago fmt',
-								lint: 'mago lint --fix && mago lint',
-								qa: [
-									'composer fmt',
-									'composer lint',
-									'composer test',
-								],
-							},
-						},
-					},
-				],
-			})
-		}
-
 		if (options.install) {
 			const phpPackages: string[] = []
 
-			if (options.eslint) {
-				await installPackages({ for: 'node', install: ['eslint', '@innocenzi/eslint-config', 'typescript'], dev: true, title: 'install eslint' })
+			if (options.dprint) {
+				await installPackages({
+					for: 'node',
+					install: ['dprint'],
+					dev: true,
+				})
 			}
 
 			if (options.php) {
