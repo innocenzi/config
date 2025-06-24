@@ -8,12 +8,12 @@
 		"useTabs": true
 	},
 	"markup": {
-		"printWidth": 100,
+		"printWidth": 120,
 		"preferAttrsSingleLine": true,
 		"vBindStyle": "short",
 		"vOnStyle": "short",
 		"vForDelimiterStyle": "in",
-		"vSlotStyle": "vSlot",
+		"vSlotStyle": "short",
 		"vBindSameNameShortHand": true,
 		"component.selfClosing": true,
 		"html.normal.selfClosing": true,
