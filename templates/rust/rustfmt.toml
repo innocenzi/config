@@ -1,4 +1,4 @@
-max_width = 150
 tab_spaces = 2
 hard_tabs = true
-imports_layout = "Vertical"
+use_try_shorthand = true
+use_field_init_shorthand = true
