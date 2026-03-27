@@ -10,7 +10,7 @@
 		"useTabs": true
 	},
 	"markup": {
-		"printWidth": 160,
+		"printWidth": 120,
 		"preferAttrsSingleLine": true,
 		"vBindStyle": "short",
 		"vOnStyle": "short",
@@ -21,7 +21,8 @@
 		"html.normal.selfClosing": true,
 		"html.void.selfClosing": true,
 		"svg.selfClosing": true,
-		"formatComments": true
+		"formatComments": true,
+		"vueComponentCase": "kebabCase"
 	},
 	"exec": {
 		"cwd": "${configDir}",
@@ -36,16 +37,19 @@
 	"excludes": [
 		"**/node_modules",
 		"**/*-lock.json",
-		"**/vendor"
+		"**/vendor",
+		"**/Fixtures/**/*.json",
+		"**/public/",
+		"**/.github"
 	],
 	"plugins": [
-		"https://plugins.dprint.dev/typescript-0.95.7.wasm",
-		"https://plugins.dprint.dev/json-0.20.0.wasm",
-		"https://plugins.dprint.dev/markdown-0.18.0.wasm",
+		"https://plugins.dprint.dev/typescript-0.95.15.wasm",
+		"https://plugins.dprint.dev/json-0.21.3.wasm",
+		"https://plugins.dprint.dev/markdown-0.21.1.wasm",
 		"https://plugins.dprint.dev/toml-0.7.0.wasm",
-		"https://plugins.dprint.dev/g-plane/malva-v0.12.1.wasm",
-		"https://plugins.dprint.dev/g-plane/markup_fmt-v0.23.1.wasm",
-		"https://plugins.dprint.dev/g-plane/pretty_yaml-v0.5.1.wasm",
-		"https://plugins.dprint.dev/exec-0.5.1.json@492414e39dea4dccc07b4af796d2f4efdb89e84bae2bd4e1e924c0cc050855bf"
+		"https://plugins.dprint.dev/g-plane/malva-v0.15.2.wasm",
+		"https://plugins.dprint.dev/g-plane/markup_fmt-v0.27.0.wasm",
+		"https://plugins.dprint.dev/g-plane/pretty_yaml-v0.6.0.wasm",
+		"https://plugins.dprint.dev/exec-0.6.0.json@a054130d458f124f9b5c91484833828950723a5af3f8ff2bd1523bd47b83b364"
 	]
 }
