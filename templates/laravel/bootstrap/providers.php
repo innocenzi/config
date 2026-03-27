@@ -1,6 +1,9 @@
 <?php
 
 return [
-    \@@namespace\Infrastructure\ConfigurationServiceProvider::class,
-    \@@namespace\Infrastructure\ModulesServiceProvider::class,
+    \Infrastructure\ConfigurationServiceProvider::class,
+    \Modules\ErrorReporting\ErrorReportingServiceProvider::class,
+    \Modules\Authentication\AuthenticationServiceProvider::class,
+    // ...
+    \Modules\Homepage\HomepageServiceProvider::class,
 ];

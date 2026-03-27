@@ -70,29 +70,9 @@ export default definePreset({
 					'app',
 					'database/factories',
 					'routes',
-					'package.lock',
-					'teests/Feature',
-					'tests/Unit',
-					'tests/TestCase.php',
+					'package-lock.json',
+					'tests',
 				],
-			})
-
-			await editFiles({
-				title: 'update phpunit config',
-				files: 'phpunit.xml',
-				operations: {
-					type: 'update-content',
-					update: (content) =>
-						content
-							.replace(
-								'<!-- <env name="DB_CONNECTION" value="sqlite"/> -->',
-								'<env name="DB_CONNECTION" value="pgsql"/>',
-							)
-							.replace(
-								'<!-- <env name="DB_DATABASE" value=":memory:"/> -->',
-								'<env name="DB_DATABASE" value="testing"/>',
-							),
-				},
 			})
 
 			if (options.dprint) {
@@ -125,8 +105,8 @@ export default definePreset({
 						merge: {
 							autoload: {
 								'psr-4': {
-									'@@namespace\\': 'src/',
 									'Infrastructure\\': 'src/Infrastructure/',
+									'Module\\': 'src/Modules/',
 									'Database\\Seeders\\': 'database/seeders/',
 								},
 							},

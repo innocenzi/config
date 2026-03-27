@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Http;
@@ -10,8 +12,4 @@ uses(TestCase::class, CreatesApplication::class, LazilyRefreshDatabase::class)
         Http::preventStrayRequests();
         $this->withoutVite();
     })
-    ->in(
-        '../src/Modules/*Test.php',
-        '../src/Modules/*/*Test.php',
-        '../src/Modules/*/*/*Test.php',
-    );
+    ->in('../src');
