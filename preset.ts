@@ -95,6 +95,23 @@ export default definePreset({
 				},
 			})
 
+			if (options.dprint) {
+				await editFiles({
+					title: 'update package.json scripts',
+					files: 'package.json',
+					operations: [
+						{
+							type: 'edit-json',
+							merge: {
+								scripts: {
+									fmt: 'dprint fmt',
+								},
+							},
+						},
+					],
+				})
+			}
+
 			await editFiles({
 				title: 'update composer.json scripts',
 				files: 'composer.json',
