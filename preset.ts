@@ -130,9 +130,12 @@ export default definePreset({
 								],
 								fmt: 'mago fmt',
 								lint: 'mago lint --fix && mago lint',
+								'lint:fix': 'mago lint --fix --format-after-fix',
+								'lint:compact': 'mago lint --reporting-format emacs',
 								qa: [
 									'composer fmt',
 									'composer lint',
+									'composer lint:fix',
 									'composer test',
 								],
 							},
