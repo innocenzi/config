@@ -110,12 +110,8 @@ export default definePreset({
 								'psr-4': {
 									'@@namespace\\': 'src/',
 									'Infrastructure\\': 'src/Infrastructure/',
-									'Support\\': 'src/Support/',
 									'Database\\Seeders\\': 'database/seeders/',
 								},
-								'files': [
-									'src/Support/functions.php',
-								],
 							},
 							scripts: {
 								'test': '@php artisan test --ci --order-by random',
